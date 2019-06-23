@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-
+import { AppComponent } from './app.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    component: AppComponent
   },
   {
     path: 'home',
@@ -14,7 +13,10 @@ const routes: Routes = [
   {
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
-  }
+  },
+  { path: 'register', loadChildren: './auth/register/register.module#RegisterPageModule' },
+  { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
+  { path: 'capture', loadChildren: './native/capture/capture.module#CapturePageModule' }
 ];
 
 @NgModule({
@@ -23,4 +25,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
