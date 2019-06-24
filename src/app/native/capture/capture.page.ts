@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { CaptureService } from '../capture.service';
 
 @Component({
   selector: 'app-capture',
@@ -8,30 +8,51 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 })
 export class CapturePage implements OnInit {
 
-  constructor(private camera: Camera) { }
-
   ngOnInit() {
   }
-  image: any = ''
+  public platformIs: string = '';
 
-  openCam() {
 
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
 
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64 (DATA_URL):
-      //alert(imageData)
-      this.image = (<any>window).Ionic.WebView.convertFileSrc(imageData);
-    }, (err) => {
-      // Handle error
-      alert("error " + JSON.stringify(err))
-    });
 
+  /**
+   * @name imageSource
+   * @type String
+   * @public
+   * @description               Property that stores the retrieved image file from the
+   *                            selected method of the ImageProvider service for
+   *                            rendering inside the component template
+   */
+  imageSource:string;
+
+  constructor(private _IMAGE: CaptureService) {
   }
+
+
+
+
+  /**
+   * @public
+   * @method captureImage
+   * @description               Mobile only - Launches the ActionSheet component to allow the
+   *                            user to select whether they are to capture an image using the
+   *                            device camera or photolibrary
+   * @return {none}
+   */
+  captureImage(): void {
+
+    this._IMAGE
+      .takePicture()
+      .then((data) => {
+        this.imageSource = data;
+      })
+      .catch((error) => {
+        console.dir(error);
+      });  }
+
 }
+
+
+
+
+

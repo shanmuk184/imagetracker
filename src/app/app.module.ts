@@ -12,6 +12,8 @@ import { AuthModule } from './auth/auth.module';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx'
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +22,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     StatusBar,

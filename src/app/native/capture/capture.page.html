@@ -3,14 +3,12 @@
     <ion-title>capture</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content class="home">
-  <ion-card>
-    <ion-card-content>
-      Hello World, this is my camera app
+<ion-content>
+  <img [src]="imageSource" >
 
-    <ion-button (click)="openCam()" >Open Camera</ion-button>
-    <img src="{{image}}">
-      Latest Picture:
-    </ion-card-content>
-  </ion-card>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="captureImage()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
