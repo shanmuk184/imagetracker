@@ -39,7 +39,7 @@
     "cordova-plugin-camera": "4.0.3",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ionic-angular": "^3.9.6",
     "jsonwebtoken": "^8.5.1",
     "rxjs": "~6.5.1",
